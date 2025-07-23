@@ -9,17 +9,15 @@ class Item(BaseModel):
     price: float
     is_offer: bool = None
 
+@app.get("/api/items")
+def read_items():
+    return {"items": ["item1", "item2", "item3"]}
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-
-@app.get("/items/{item_id}")
+@app.get("/api/items/{item_id}")
 def read_item(item_id: int, q: str = None):
     return {"item_id": item_id, "q": q}
 
-
-@app.put("/items/{item_id}")
+@app.put("/api/items/{item_id}")
 def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
+
